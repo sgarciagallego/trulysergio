@@ -1,0 +1,229 @@
+$type-ratios: (
+  "minorSecond": 1.067,
+  "majorSecond": 1.125,
+  "minorThird": 1.2,
+  "majorThird": 1.25,
+  "perfectFourth": 1.333,
+  "augmentedFourth": 1.414,
+  "perfectFifth": 1.5,
+  "goldenRatio": 1.618
+);
+
+@function type-ratio($key) {
+  @return map-get($type-ratios, $key);
+}
+
+$type-base-size: 1.125rem;
+$type-size-ratio: type-ratio("majorThird");
+
+$type-levels: 4, 3, 2, 1;
+
+$type-styles: ();
+$level-size: $type-base-size;
+@each $level in $type-levels {
+  $level-size: $level-size * $type-size-ratio;
+  $type-styles: map-merge($type-styles, (#{"h"}$level: $level-size));
+  h#{$level},
+  .h#{$level} {
+    font-size: $level-size;
+    line-height: calc(2px + 2ex + 2px);
+    margin-bottom: 0.65em;
+
+    @if ($type-size-ratio > 1.2) {
+      $level-unitless: $level-size / ($level-size * 0 + 1);
+      $fluid-reduction: if($level-size > 4, 0.5, 0.33);
+      $fluid-min: $level-unitless - ($fluid-reduction * $level-unitless);
+      $fluid-min: if($fluid-min > $type-base-size, $fluid-min, 1);
+      $fluid-scaler: ($level-unitless - $fluid-min) + 3.1vw;
+
+      font-size: clamp(
+        #{$fluid-min}rem,
+        #{$fluid-scaler} + 1rem,
+        #{$level-size}
+      );
+    }
+  }
+}
+
+@function type-style($key) {
+  @return map-get($type-styles, $key);
+}
+
+:root {
+  --max-width: 1200px;
+  --border-radius: 12px;
+
+  --font: Wotfard, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+
+  --foreground: 24, 25, 37;
+  --background: 252, 249, 247;
+
+  --primary: 9, 22, 158;
+  --secondary: 200, 65, 20;
+
+  --hyperlink: 27, 84, 228;
+  --hyperlink-hover: 19, 59, 160;
+
+  --error: 189, 38, 15;
+
+  --transition-2x: 260ms ease;
+  --transition: 130ms ease;
+}
+
+[data-theme="dark"] {
+  --background: 24, 25, 37;
+  --foreground: 252, 249, 247;
+
+  --primary: 111, 122, 246;
+  --secondary: 236, 104, 60;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html, body {
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  transition: var(--transition-2x);
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font);
+  font-size: $type-base-size;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+::-webkit-scrollbar-track {
+  border: solid 0.125rem transparent;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0.5rem 0.5rem rgb(var(--T-600));
+  border-radius: 0.25rem;
+  border: 0.125rem solid transparent;
+
+  &:hover {
+    box-shadow: inset 0 0 0.5rem 0.5rem rgb(var(--T-800));
+  }
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+p, li, h1, h2, h3, h4, h5, h6 {
+  word-break: break-word;
+  margin-top: 0;
+}
+
+ul[role="list"] {
+  margin-bottom: 2em;
+}
+
+p.large {
+  font-size: max(1.25em, min(3vw, 2em));
+}
+
+p:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+strong {
+  font-weight: 600;
+}
+
+small {
+  font-size: max(0.667em, 0.667rem);
+
+}
+
+blockquote {
+  margin-bottom: 2em;
+  padding-left: 1em;
+  position: relative;
+  font-style: italic;
+  
+  &::after {
+    width: 2px;
+    height: 100%;
+    border-radius: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background: rgb(var(--orange));
+  }
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+.space {
+  @media (min-width: 320px) {
+    max-width: 280px;
+  }
+
+  @media (min-width: 480px) {
+    max-width: 440px;
+  }
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+#root {
+  isolation: isolate;
+}
+
+.screenReaderVisible {
+  width: 1px !important;
+  height: 1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
