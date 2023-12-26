@@ -57,22 +57,21 @@ export default async function HomePage() {
                 (new Date(post.datePublished).toLocaleString(
                   "en-US", 
                   {
-                    month: 'long',
-                    day: 'numeric',
-                    year: 'numeric',
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
                   }
                 ))
               }
               excerpt={post.excerpt}
               href={`blog/${post.slug.current}`}
-              children={""}
             />
           ))}
         </section>
         <aside>
           <section>
             <h2>About me</h2>
-            <p>Hi! I'm Sergio, a Designer Developer for an education provider and co-founder for a branding agency. My aim for this blog is to help people revolving around the technical and creative industries build confidence and overcome challenges in their professional development.</p>
+            <p>Hi! I&apos;m Sergio, a Designer Developer for an education provider and co-founder for a branding agency. My aim for this blog is to help people revolving around the technical and creative industries build confidence and overcome challenges in their professional development.</p>
           </section>
           <section>
             <h2>Categories</h2>
