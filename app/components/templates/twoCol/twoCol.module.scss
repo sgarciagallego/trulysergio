@@ -1,0 +1,9 @@
+.wrapper {
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, auto);
+  }
+}

@@ -1,0 +1,15 @@
+.wrapperMax {
+  margin-top: -7.125rem;
+  padding-top: 10.6825rem;
+  padding-bottom: 3.5625rem;
+  background: rgb(var(--N100));
+  transition: background var(--transition-2x);
+
+  & > h1 {
+    color: rgb(var(--foreground));
+  }
+}
+
+.wrapperMin {
+  padding-top: 3.5625rem;
+}

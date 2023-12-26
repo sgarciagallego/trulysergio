@@ -1,6 +1,5 @@
 import "./globals.scss"
 import localFont from "next/font/local"
-import AdminBar from "../components/molecules/adminbar/adminbar"
 
 const wotfard = localFont({
   src: [
@@ -30,9 +29,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" suppressHydrationWarning>
       <body className={wotfard.variable}>
-        <AdminBar />
         {children}
       </body>
     </html>

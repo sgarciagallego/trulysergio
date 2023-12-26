@@ -1,0 +1,33 @@
+.wrapper {
+  border-radius: var(--border-radius);
+  padding: var(--padding-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgb(var(--N100));
+  font-size: 1rem;
+
+  & > div {
+    margin-bottom: 1.5em;
+
+    & > time {
+      margin-bottom: 0.75em;
+      display: block;
+      color: rgb(var(--N500));
+      font-size: var(--font-size-small);
+    }
+
+    & > h2, h3, h4 {
+      font-size: var(--font-size-h4);
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+    }
+  }
+
+  & > a {
+    width: fit-content;
+  }
+}

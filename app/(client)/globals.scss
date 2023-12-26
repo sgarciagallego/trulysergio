@@ -51,30 +51,63 @@ $level-size: $type-base-size;
 
 :root {
   --max-width: 1200px;
-  --border-radius: 12px;
+  --border-radius: 0.75rem;
+  --border-radius-child: 0.375rem;
+  --padding-label: 0.25em 1em;
+  --padding-card: 2.25em 1.5em;
+  --gap-icon: 0.125rem;
+  --gap-label: 0.5rem;
+
+  --line-height-single: 1;
+  --line-height: 1.5em;
+  --line-height-double: 2;
 
   --font: Wotfard, system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: "League Mono", ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
-  --foreground: 24, 25, 37;
+  --font-size-h1: max(2.441em, 2.441rem);
+  --font-size-h2: max(1.953em, 1.953rem);
+  --font-size-h3: max(1.563em, 1.563rem);
+  --font-size-h4: max(1.25em, 1.25rem);
+  --font-size-normal: max(1.125em, 1.125rem);
+  --font-size-subtitle: max(1em, 1rem);
+  --font-size-small: max(0.8em, 0.8rem);
+
+  --font-weight-bold: 600;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+
   --background: 252, 249, 247;
+  --N100: 210, 211, 225;
+  --N200: 164, 167, 196;
+  --N300: 119, 123, 166;
+  --N400: 83, 87, 128;
+  --N500: 54, 56, 82;
+  --foreground: 24, 25, 37;
 
   --primary: 9, 22, 158;
   --secondary: 200, 65, 20;
 
-  --hyperlink: 27, 84, 228;
-  --hyperlink-hover: 19, 59, 160;
+  --hyperlink: ;
+  --hyperlink-hover: ;
 
-  --error: 189, 38, 15;
+  --error: ;
 
+  --transition-4x: 520ms ease;
+  --transition-3x: 390ms ease;
   --transition-2x: 260ms ease;
   --transition: 130ms ease;
+
+  --transform-right: translateX(0.25rem);
 }
 
 [data-theme="dark"] {
   --background: 24, 25, 37;
+  --N100: 54, 56, 82;
+  --N200: 83, 87, 128;
+  --N300: 119, 123, 166;
+  --N400: 164, 167, 196;
+  --N500: 210, 211, 225;
   --foreground: 252, 249, 247;
 
   --primary: 111, 122, 246;
@@ -92,7 +125,7 @@ $level-size: $type-base-size;
 html, body {
   background: rgb(var(--background));
   color: rgb(var(--foreground));
-  transition: var(--transition-2x);
+  transition: var(--transition-3x);
 }
 
 body {
@@ -100,7 +133,7 @@ body {
   overflow-x: hidden;
   font-family: var(--font);
   font-size: $type-base-size;
-  line-height: 1.5;
+  line-height: var(--line-height);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -131,7 +164,7 @@ input, button, textarea, select {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 500;
+  font-weight: var(--font-weight-bold);
 }
 
 p, li, h1, h2, h3, h4, h5, h6 {
@@ -156,8 +189,7 @@ strong {
 }
 
 small {
-  font-size: max(0.667em, 0.667rem);
-
+  font-size: var(--font-size-small);
 }
 
 blockquote {

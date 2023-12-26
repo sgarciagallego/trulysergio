@@ -1,6 +1,6 @@
 import "./globals.scss"
 import localFont from "next/font/local"
-import { Providers } from "../theme/providers"
+import { Providers } from "../utils/providers"
 import Navbar from "../components/molecules/navbar/navbar"
 
 const wotfard = localFont({
@@ -71,6 +71,29 @@ const wotfard = localFont({
   variable: "--font",
 })
 
+const leagueMono = localFont({
+  src: [
+    {
+      path: "../fonts/league-mono.ttf",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "../fonts/league-mono.woff",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "../fonts/league-mono.woff2",
+      weight: "400",
+      style: "normal"
+    },
+  ],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
+})
+
 export const metadata = {
   title: "",
   description: "",
@@ -79,7 +102,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en-GB" suppressHydrationWarning>
-      <body className={wotfard.variable}>
+      <body className={`
+        ${wotfard.variable}
+        ${leagueMono.variable}
+      `}>
         <Providers>
           <Navbar />
           {children}
