@@ -1,7 +1,23 @@
 import styles from "./card.module.scss"
 import Hyperlink from "../../atoms/hyperlink/hyperlink"
 
-export default function Card({ useAlt, element, heading, dateTime, excerpt, href, children }) {
+export default function Card({ 
+  useAlt, 
+  element, 
+  heading, 
+  dateTime, 
+  excerpt, 
+  href, 
+  children 
+} : {
+  useAlt: boolean;
+  element?: any;
+  heading: string;
+  dateTime: string;
+  excerpt: string;
+  href: string;
+  children?: React.ReactNode;
+}) {
   const Heading = element || "h2"
 
   return (
