@@ -1,9 +1,55 @@
-.wrapper {
+.minWrapper {
   display: grid;
-  grid-gap: 2rem;
   grid-template-columns: auto;
+  gap: 2rem;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, auto);
+  }
+}
+
+.maxWrapper {
+  margin-top: 7.125rem;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1rem;
+
+  @media (min-width: 320px) and (max-width: 991px) {
+    & > aside > section {
+      margin-bottom: 6rem;
+    }
+  }
+
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(12, 1fr);
+
+    & > section {
+      grid-column: 1 / 8;
+    }
+
+    & > aside {
+      grid-column: 9 / 13;
+      display: flex;
+      flex-direction: column;
+      gap: 6rem;
+    }
+  }
+
+  & > section {
+    margin-bottom: 6rem;
+  }
+
+  & > section > article:not(:last-of-type) {
+    margin-bottom: 4rem;
+  }
+
+  & > section h2,
+  & > aside h2 {
+    color: rgb(var(--secondary));
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+    margin-bottom: 3rem;
   }
 }

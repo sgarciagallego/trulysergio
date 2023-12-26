@@ -2,6 +2,7 @@ import "./globals.scss"
 import localFont from "next/font/local"
 import { Providers } from "../utils/providers"
 import Navbar from "../components/molecules/navbar/navbar"
+import Footer from "../components/molecules/footer/footer"
 
 const wotfard = localFont({
   src: [
@@ -109,6 +110,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>

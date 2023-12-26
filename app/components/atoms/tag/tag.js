@@ -1,10 +1,10 @@
 import styles from "./tag.module.scss"
 
-export default function Label({ children }) {
+export default function Tag({ children }) {
   return (
     <div 
       role="listitem" 
-      className={styles.label}
+      className={styles.tag}
     >
       {children}
     </div>

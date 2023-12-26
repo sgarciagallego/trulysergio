@@ -1,0 +1,12 @@
+.wrapper {
+  height: 3.5625rem;
+  display: flex;
+  align-items: center;
+
+  & > footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(var(--N400));
+  }
+}

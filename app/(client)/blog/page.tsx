@@ -3,7 +3,7 @@ import { Post } from "../../utils/interface"
 import Intro from "../../components/molecules/intro/intro"
 import TwoCol from "../../components/templates/twoCol/twoCol"
 import Card from "../../components/organisms/card/card"
-import LabelContainer from "../../components/templates/labelContainer/labelContainer"
+import TagContainer from "../../components/templates/tagContainer/tagContainer"
 import Tag from "../../components/atoms/tag/tag"
 
 export const metadata = {
@@ -37,8 +37,6 @@ export const revalidate = 60
 export default async function BlogPage() {
   const posts: Post[] = await getPosts()
 
-  console.log(posts, "posts")
-
   return (
     <>
       <Intro
@@ -47,9 +45,10 @@ export default async function BlogPage() {
       >
         Blog
       </Intro>
-      <TwoCol>
+      <TwoCol useMin={true}>
         {posts?.length > 0 && posts?.map(post => (
           <Card
+            useAlt={false}
             key={post._id}  
             element={""}
             heading={post.title}
@@ -66,11 +65,11 @@ export default async function BlogPage() {
             excerpt={post.excerpt}
             href={`blog/${post.slug.current}`}
           >
-            <LabelContainer>
+            <TagContainer>
               {post?.tags?.map(tag => (
                 <Tag key={tag?._id}>{tag?.tagName}</Tag>
               ))}
-            </LabelContainer>
+            </TagContainer>
           </Card>
         ))}
       </TwoCol>
