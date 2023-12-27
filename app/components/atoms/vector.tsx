@@ -6,7 +6,12 @@ const svg = {
   arrowRight: ArrowRightVector,
 }
 
-export default function Vector({name, ...props}) {
+export default function Vector({
+  name, 
+  ...props
+} : {
+  name: string
+}) {
   const IconComponent = svg[name]
   if (!IconComponent) {
     return null

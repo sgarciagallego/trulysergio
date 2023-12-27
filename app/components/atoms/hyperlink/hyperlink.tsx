@@ -1,14 +1,20 @@
 import Link from "next/link"
 import styles from "./hyperlink.module.scss"
-import Vector from "../../atoms/vector"
+import Vector from "../vector"
 
-export default function Hyperlink({ href, children }) {
+export default function Hyperlink({ 
+  href, 
+  children 
+} : {
+  href: string
+  children: React.ReactNode
+}) {
   return (
     <Link href={href} passHref legacyBehavior>
-      <Link className={styles.hyperlink}>
+      <a className={styles.hyperlink}>
         {children}
         <Vector name={"arrowRight"} />
-      </Link>
+      </a>
     </Link>
   )
 }

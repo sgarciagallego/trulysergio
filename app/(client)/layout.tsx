@@ -1,4 +1,5 @@
 import "./globals.scss"
+import { Analytics } from "@vercel/analytics/react"
 import localFont from "next/font/local"
 import { Providers } from "../utils/providers"
 import Navbar from "../components/molecules/navbar/navbar"
@@ -67,7 +68,6 @@ const wotfard = localFont({
       style: "normal"
     },
   ],
-  subsets: ["latin"],
   display: "swap",
   variable: "--font",
 })
@@ -90,17 +90,15 @@ const leagueMono = localFont({
       style: "normal"
     },
   ],
-  subsets: ["latin"],
   display: "swap",
   variable: "--font-mono",
 })
 
-export const metadata = {
-  title: "",
-  description: "",
-}
-
-export default function RootLayout({ children }) {
+export default function RootLayout({ 
+  children 
+} : {
+  children?: React.ReactNode
+}) {
   return (
     <html lang="en-GB" suppressHydrationWarning>
       <body className={`
@@ -111,6 +109,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           {children}
           <Footer />
+          <Analytics />
         </Providers>
       </body>
     </html>

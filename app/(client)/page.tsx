@@ -38,10 +38,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Intro
-        element={""}
-        subtitle={""}
-      >
+      <Intro>
         Sergio Garcia Gallego
       </Intro>
       <TwoCol useMin={false}>

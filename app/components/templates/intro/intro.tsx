@@ -1,7 +1,15 @@
 import styles from "./intro.module.scss"
 import Subtitle from "../../atoms/subtitle/subtitle"
 
-export default function Intro({ element, subtitle, children }) {
+export default function Intro({
+  element,
+  subtitle,
+  children,
+}: {
+  element?: string
+  subtitle?: string
+  children: React.ReactNode
+}) {
   const Element = element || "div"
 
   return (
@@ -11,5 +19,5 @@ export default function Intro({ element, subtitle, children }) {
         <h1>{children}</h1>
       </Element>
     </div>
-  )
+  );
 }
