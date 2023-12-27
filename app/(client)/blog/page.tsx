@@ -1,6 +1,6 @@
 import { client } from "../../../sanity/lib/client"
 import { Post } from "../../utils/interface"
-import Intro from "../../components/molecules/intro/intro"
+import Intro from "../../components/templates/intro/intro"
 import TwoCol from "../../components/templates/twoCol/twoCol"
 import Card from "../../components/organisms/card/card"
 import TagContainer from "../../components/templates/tagContainer/tagContainer"

@@ -1,5 +1,6 @@
 import { client } from "../../../../sanity/lib/client"
-import Intro from "../../../components/molecules/intro/intro"
+import Intro from "../../../components/templates/intro/intro"
+import PostBody from "../../../components/templates/postBody/postBody"
 
 interface Params {
   params: {
@@ -37,10 +38,22 @@ export default async function PostPage({ params }: Params) {
     <>
       <Intro
         element={""}
-        subtitle={"Blog"}
+        subtitle={
+          (new Date(post?.datePublished).toLocaleString(
+            "en-GB", 
+            {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            }
+          ))
+        }
       >
         {post?.title}
       </Intro>
+      <PostBody>
+        {post?.body}
+      </PostBody>
     </>
   )
 }
