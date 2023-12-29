@@ -6,7 +6,7 @@ export default function Intro({
   subtitle,
   children,
 }: {
-  element?: string
+  element?: keyof JSX.IntrinsicElements
   subtitle?: string
   children: React.ReactNode
 }) {

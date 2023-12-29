@@ -1,12 +1,18 @@
+import { PortableText } from "@portabletext/react"
 import { client } from "../../../../sanity/lib/client"
+import { Tag } from "../../../utils/interface"
 import Intro from "../../../components/templates/intro/intro"
 import PostBody from "../../../components/templates/postBody/postBody"
+import TagContainer from "../../../components/templates/tagContainer/tagContainer"
+import Label from "../../../components/atoms/label/label"
 
 interface Params {
   params: {
     slug: string
   }
 }
+
+export const revalidate = 60
 
 async function getPost(slug: string) {
   const query = `
@@ -16,6 +22,7 @@ async function getPost(slug: string) {
       slug,
       datePublished,
       excerpt,
+      body,
       tags[]-> {
         _id,
         slug,
@@ -30,14 +37,11 @@ async function getPost(slug: string) {
 }
 
 export default async function PostPage({ params }: Params) {
-  console.log(params, "params")
   const post = await getPost(params?.slug)
-  console.log(post, "post")
 
   return (
     <>
       <Intro
-        element={""}
         subtitle={
           (new Date(post?.datePublished).toLocaleString(
             "en-GB", 
@@ -52,7 +56,14 @@ export default async function PostPage({ params }: Params) {
         {post?.title}
       </Intro>
       <PostBody>
-        {post?.body}
+        <PortableText 
+          value={post?.body}
+        />
+        <TagContainer>
+          {post?.tags?.map((label: Tag) => (
+            <Label key={label._id}>{label.tagName}</Label>
+          ))}
+        </TagContainer>
       </PostBody>
     </>
   )

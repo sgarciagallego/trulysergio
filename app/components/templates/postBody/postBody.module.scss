@@ -8,12 +8,14 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto;
 
-    &  > .noIndex {
-      grid-column: 1 / 13;
-    }
-
-    & > .availableIndex {
-      grid-column: 1 / 8;
+    & > .body {
+      &.noIndex {
+        grid-column: 1 / 13;
+      }
+  
+      &.availableIndex {
+        grid-column: 1 / 8;
+      }
     }
 
     & > .index {
@@ -22,6 +24,26 @@
   }
 
   & > .body {
+    font-size: 1.1875rem;
+    line-height: 1.75em;
+
+    & strong {
+      color: rgb(var(--tertiary));
+    }
+
+    & > ul {
+      padding-left: 1.25rem;
+
+      &:not(:last-child) {
+        margin-bottom: 2em;
+      }
+
+      & > li {
+        &:not(:last-of-type) {
+          margin-bottom: 0.5em;
+        }
+      }
+    }
   }
 
   & > .index {

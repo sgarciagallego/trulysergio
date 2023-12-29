@@ -4,7 +4,7 @@ import Intro from "../components/templates/intro/intro"
 import TwoCol from "../components/templates/twoCol/twoCol"
 import Card from "../components/organisms/card/card"
 import TagContainer from "../components/templates/tagContainer/tagContainer"
-import Tag from "../components/atoms/tag/tag"
+import Label from "../components/atoms/label/label"
 
 export const metadata = {
   title: "Truly Sergio",
@@ -52,7 +52,7 @@ export default async function HomePage() {
               heading={post.title}
               dateTime={
                 (new Date(post.datePublished).toLocaleString(
-                  "en-US", 
+                  "en-GB", 
                   {
                     month: "long",
                     day: "numeric",
@@ -74,7 +74,7 @@ export default async function HomePage() {
             <h2>Categories</h2>
             <TagContainer>
               {posts?.length > 0 && posts.flatMap(post => post?.tags).map(tag => (
-                <Tag key={tag?._id}>{tag?.tagName}</Tag>
+                <Label key={tag?._id}>{tag?.tagName}</Label>
               ))}
             </TagContainer>
           </section>

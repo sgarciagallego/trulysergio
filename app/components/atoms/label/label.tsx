@@ -1,6 +1,6 @@
-import styles from "./tag.module.scss"
+import styles from "./label.module.scss"
 
-export default function Tag({ 
+export default function Label({ 
   children 
 } : {
   children: React.ReactNode

@@ -87,6 +87,7 @@ $level-size: $type-base-size;
 
   --primary: 9, 22, 158;
   --secondary: 200, 65, 20;
+  --tertiary: 110, 102, 12;
 
   --hyperlink: ;
   --hyperlink-hover: ;
@@ -112,6 +113,7 @@ $level-size: $type-base-size;
 
   --primary: 111, 122, 246;
   --secondary: 236, 104, 60;
+  --tertiary: 237, 225, 95;
 }
 
 *, *::before, *::after {
@@ -135,23 +137,6 @@ body {
   font-size: $type-base-size;
   line-height: var(--line-height);
   -webkit-font-smoothing: antialiased;
-}
-
-::-webkit-scrollbar {
-  width: 0.75rem;
-}
-::-webkit-scrollbar-track {
-  border: solid 0.125rem transparent;
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 0.5rem 0.5rem rgb(var(--T-600));
-  border-radius: 0.25rem;
-  border: 0.125rem solid transparent;
-
-  &:hover {
-    box-shadow: inset 0 0 0.5rem 0.5rem rgb(var(--T-800));
-  }
 }
 
 img, picture, video, canvas, svg {

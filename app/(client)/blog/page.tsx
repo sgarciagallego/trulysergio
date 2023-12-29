@@ -4,7 +4,7 @@ import Intro from "../../components/templates/intro/intro"
 import TwoCol from "../../components/templates/twoCol/twoCol"
 import Card from "../../components/organisms/card/card"
 import TagContainer from "../../components/templates/tagContainer/tagContainer"
-import Tag from "../../components/atoms/tag/tag"
+import Tag from "../../components/atoms/label/label"
 
 export const metadata = {
   title: "Blog",
@@ -39,10 +39,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Intro
-        element={""}
-        subtitle={""}
-      >
+      <Intro>
         Blog
       </Intro>
       <TwoCol useMin={true}>
@@ -54,7 +51,7 @@ export default async function BlogPage() {
             heading={post.title}
             dateTime={
               (new Date(post.datePublished).toLocaleString(
-                "en-US", 
+                "en-GB", 
                 {
                   month: 'long',
                   day: 'numeric',
