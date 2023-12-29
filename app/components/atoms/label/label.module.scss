@@ -1,6 +1,16 @@
 .tag {
   border-radius: var(--border-radius-child);
   padding: var(--padding-label);
+  background: rgb(var(--N100));
+  color: rgb(var(--foreground));
+  line-height: var(--line-height-double);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-small);
+}
+
+.altTag {
+  border-radius: var(--border-radius-child);
+  padding: var(--padding-label);
   background: rgb(var(--N200));
   color: rgb(var(--foreground));
   line-height: var(--line-height-double);

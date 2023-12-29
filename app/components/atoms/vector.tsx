@@ -1,9 +1,11 @@
-import CheckVector from "./vectors/check"
 import ArrowRightVector from "./vectors/arrowRight"
+import CheckVector from "./vectors/check"
+import DividerVector from "./vectors/divider"
 
 const svg = {
-  check: CheckVector,
   arrowRight: ArrowRightVector,
+  check: CheckVector,
+  divider: DividerVector,
 }
 
 export default function Vector({

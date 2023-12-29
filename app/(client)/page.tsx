@@ -1,10 +1,11 @@
 import { client } from "../../sanity/lib/client"
-import { Post } from "../utils/interface"
+import { Post, Tag } from "../utils/interface"
 import Intro from "../components/templates/intro/intro"
 import TwoCol from "../components/templates/twoCol/twoCol"
 import Card from "../components/organisms/card/card"
 import TagContainer from "../components/templates/tagContainer/tagContainer"
 import Label from "../components/atoms/label/label"
+import Link from "next/link"
 
 export const metadata = {
   title: "Truly Sergio",
@@ -26,22 +27,38 @@ async function getPosts() {
     }
   `
 
-  const data = await client.fetch(query)
+  const posts = await client.fetch(query)
 
-  return data
+  return posts
+}
+
+async function getAllTags() {
+  const query = `
+    *[_type=="tag"] {
+      tagName,
+      slug,
+      _id
+    }
+  `
+
+  const tags = await client.fetch(query)
+
+  return tags
 }
 
 export const revalidate = 60
 
 export default async function HomePage() {
   const posts: Post[] = await getPosts()
+  const tags: Tag[] = await getAllTags()
+  console.log(tags, "tags")
 
   return (
     <>
       <Intro>
         Sergio Garcia Gallego
       </Intro>
-      <TwoCol useMin={false}>
+      <TwoCol>
         <section>
           <h2>Recently published</h2>
           {posts?.length > 0 && posts?.map(post => (
@@ -73,8 +90,14 @@ export default async function HomePage() {
           <section>
             <h2>Categories</h2>
             <TagContainer>
-              {posts?.length > 0 && posts.flatMap(post => post?.tags).map(tag => (
-                <Label key={tag?._id}>{tag?.tagName}</Label>
+              {tags?.length > 0 && tags?.map(tag => (
+                <Link 
+                  key={tag?._id}
+                  href={`/blog/${tag.slug.current}`}
+                  style={{textDecoration: "none"}}
+                >
+                  <Label>{tag.tagName}</Label>
+                </Link>
               ))}
             </TagContainer>
           </section>

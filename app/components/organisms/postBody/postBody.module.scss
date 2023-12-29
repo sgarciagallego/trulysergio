@@ -24,8 +24,21 @@
   }
 
   & > .body {
-    font-size: 1.1875rem;
+    font-size: 1.125rem;
     line-height: 1.75em;
+
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
+      scroll-margin-top: 2rem;
+    }
+
+    & img {
+      margin-bottom: 2em;
+      border-radius: var(--border-radius);
+    }
 
     & strong {
       color: rgb(var(--tertiary));
@@ -47,14 +60,39 @@
   }
 
   & > .index {
+    font-size: 1rem;
 
     & > h2 {
+      margin-bottom: 1rem;
       color: rgb(var(--secondary));
-      font-size: 1rem;
+      font-size: 1em;
       font-weight: var(--font-weight-medium);
       text-transform: uppercase;
       letter-spacing: 0.125rem;
-      margin-bottom: 3rem;
+    }
+
+    & ul {
+      padding: 0;
+      list-style-type: none;
+
+      & li {
+        & a {
+          width: fit-content;
+          margin-bottom: 0.5em;
+          display: block;
+          color: rgb(var(--N400));
+          text-decoration: none;
+          transition: var(--transition);
+
+          &:hover {
+            color: rgb(var(--foreground));
+          }
+        }
+
+        & ul {
+          padding-left: 1.5rem;
+        }
+      }
     }
   }
 }

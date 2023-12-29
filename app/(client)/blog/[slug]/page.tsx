@@ -1,8 +1,10 @@
-import { PortableText } from "@portabletext/react"
+import Image from "next/image"
 import { client } from "../../../../sanity/lib/client"
+import { urlForImage } from "../../../../sanity/lib/image"
 import { Tag } from "../../../utils/interface"
+import { PortableText } from "@portabletext/react"
 import Intro from "../../../components/templates/intro/intro"
-import PostBody from "../../../components/templates/postBody/postBody"
+import PostBody from "../../../components/organisms/postBody/postBody"
 import TagContainer from "../../../components/templates/tagContainer/tagContainer"
 import Label from "../../../components/atoms/label/label"
 
@@ -56,9 +58,10 @@ export default async function PostPage({ params }: Params) {
         {post?.title}
       </Intro>
       <PostBody>
-        <PortableText 
-          value={post?.body}
-        />
+      <PortableText 
+        value={post?.body} 
+        components={myPortableTextComponents}
+      />
         <TagContainer>
           {post?.tags?.map((label: Tag) => (
             <Label key={label._id}>{label.tagName}</Label>
@@ -68,3 +71,16 @@ export default async function PostPage({ params }: Params) {
     </>
   )
 }
+
+const myPortableTextComponents = {
+  types: {
+    image: ({ value }: any) => (
+      <Image
+        src={urlForImage(value)}
+        alt="Post"
+        width={700}
+        height={700}
+      />
+    ),
+  },
+};

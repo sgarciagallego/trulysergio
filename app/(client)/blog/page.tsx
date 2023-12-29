@@ -4,7 +4,7 @@ import Intro from "../../components/templates/intro/intro"
 import TwoCol from "../../components/templates/twoCol/twoCol"
 import Card from "../../components/organisms/card/card"
 import TagContainer from "../../components/templates/tagContainer/tagContainer"
-import Tag from "../../components/atoms/label/label"
+import Label from "../../components/atoms/label/label"
 
 export const metadata = {
   title: "Blog",
@@ -42,7 +42,7 @@ export default async function BlogPage() {
       <Intro>
         Blog
       </Intro>
-      <TwoCol useMin={true}>
+      <TwoCol useMin>
         {posts?.length > 0 && posts?.map(post => (
           <Card
             useAlt={false}
@@ -64,7 +64,12 @@ export default async function BlogPage() {
           >
             <TagContainer>
               {post?.tags?.map(tag => (
-                <Tag key={tag?._id}>{tag?.tagName}</Tag>
+                <Label 
+                  alt
+                  key={tag?._id}
+                >
+                  {tag?.tagName}
+                </Label>
               ))}
             </TagContainer>
           </Card>

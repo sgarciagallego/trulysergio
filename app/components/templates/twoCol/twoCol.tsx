@@ -8,7 +8,12 @@ export default function TwoCol({
   children: React.ReactNode
 }) {
   return (
-    <section className={`space ${useMin ? styles.minWrapper : styles.maxWrapper}`}>
+    <section 
+      className={`
+        space 
+        ${useMin ? styles.minWrapper : styles.maxWrapper}
+      `}
+    >
       {children}
     </section>
   )

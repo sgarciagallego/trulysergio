@@ -1,0 +1,15 @@
+.wrapper {
+  & > svg {
+    width: 100%;
+    max-width: 104px;
+    height: 0.75rem;
+    margin: 4rem auto;
+    display: block;
+
+    & > line {
+      stroke: rgb(var(--N300));
+      stroke-width: 0.125rem;
+      stroke-linecap: round;
+    }
+  }
+}
