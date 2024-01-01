@@ -124,18 +124,20 @@ export default function PostBody({
         {children}
         <PostFooter />
       </main>
-      {!noIndex && headings.length > 0 && (
-        <aside
-          className={`
-            ${styles.index}
-            ${isFixed ? styles.fixed : ""}
-          `}
-          ref={indexRef}
-        >
-          <h2>Table of contents</h2>
-          {renderHeadings(headings)}
-        </aside>
-      )}
+      <div className={styles.container}>
+        {!noIndex && headings.length > 0 && (
+          <aside
+            className={`
+              ${styles.index}
+              ${isFixed ? styles.fixed : ""}
+            `}
+            ref={indexRef}
+          >
+            <h2>Table of contents</h2>
+            {renderHeadings(headings)}
+          </aside>
+        )}
+      </div>
     </div>
   )
 }
