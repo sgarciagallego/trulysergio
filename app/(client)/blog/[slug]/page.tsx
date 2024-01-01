@@ -1,3 +1,4 @@
+import type { Metadata, ResolvingMetadata } from "next"
 import Image from "next/image"
 import { client } from "../../../../sanity/lib/client"
 import { urlForImage } from "../../../../sanity/lib/image"
@@ -38,7 +39,16 @@ async function getPost(slug: string) {
   return post
 }
 
-export default async function PostPage({ params }: Params) {
+export async function generateMetadata( { params }: Params ): Promise<Metadata> {
+  const post = await getPost(params?.slug)
+
+  return {
+    title: `${post?.title} | Truly Sergio`,
+    description: post?.excerpt,
+  }
+}
+
+export default async function PostPage( { params }: Params ) {
   const post = await getPost(params?.slug)
 
   return (

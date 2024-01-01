@@ -1,5 +1,6 @@
 .wrapper {
-  margin-top: 3.5625rem;
+  position: relative !important;
+  padding-top: 3.5625rem;
   margin-bottom: 3.5625rem;
   display: grid;
   gap: 1rem;
@@ -20,6 +21,13 @@
 
     & > .index {
       grid-column: 9 / 13;
+
+      &.fixed {
+        position: fixed;
+        top: 3.5625rem;
+        right: auto;
+        width: 368px;
+      }
     }
   }
 
@@ -62,7 +70,7 @@
   & > .index {
     font-size: 1rem;
 
-    & > h2 {
+    & h2 {
       margin-bottom: 1rem;
       color: rgb(var(--secondary));
       font-size: 1em;

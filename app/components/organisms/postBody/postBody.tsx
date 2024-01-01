@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import styles from "./postBody.module.scss"
 import PostFooter from "../postFooter/postFooter"
 import Link from "next/link"
@@ -23,13 +23,31 @@ export default function PostBody({
   children?: React.ReactNode
 }) {
   const [headings, setHeadings] = useState<HierarchicalHeading[]>([])
+  const [isFixed, setIsFixed] = useState(false)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const indexRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    function handleScroll() {
+      if (wrapperRef.current && indexRef.current) {
+        const { top } = wrapperRef.current.getBoundingClientRect()
+        setIsFixed(top <= 0)
+      }
+    }
+  
+    window.addEventListener("scroll", handleScroll)
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   useEffect(() => {
     if (!noIndex && children) {
       const mainElement = document.querySelector("main")
 
       if (mainElement) {
-        const headingTags = ["h1", "h2", "h3", "h4", "h5", "h6"]
+        const headingTags = ["h2", "h3", "h4", "h5", "h6"]
 
         const headingElements = mainElement.querySelectorAll(
           headingTags.join(", ")
@@ -41,7 +59,7 @@ export default function PostBody({
         headingElements.forEach((element) => {
           const text = element.textContent || ""
           const anchor = text.toLowerCase().replace(/\s+/g, "-")
-          const level = element.tagName.toLowerCase()
+          const level = element.tagName.toLowerCase().replace("h", "")
 
           const newHeading: HierarchicalHeading = {
             level,
@@ -49,15 +67,21 @@ export default function PostBody({
             anchor,
           }
 
-          if (level === "h2") {
+          if (level === "2") {
             extractedHeadings.push(newHeading)
             currentHierarchy = [newHeading]
           } else {
-            let parentHierarchy: HierarchicalHeading | undefined = currentHierarchy[currentHierarchy.length - 1]
+            let parentHierarchy:
+              | HierarchicalHeading
+              | undefined = currentHierarchy[currentHierarchy.length - 1]
 
-            while (parentHierarchy && parseInt(parentHierarchy.level[1]) >= parseInt(level[1])) {
+            while (
+              parentHierarchy &&
+              parseInt(parentHierarchy.level) >= parseInt(level)
+            ) {
               currentHierarchy.pop()
-              parentHierarchy = currentHierarchy[currentHierarchy.length - 1]
+              parentHierarchy =
+                currentHierarchy[currentHierarchy.length - 1]
             }
 
             if (parentHierarchy) {
@@ -68,7 +92,7 @@ export default function PostBody({
               currentHierarchy.push(newHeading)
             }
           }
-          
+
           element.id = anchor
         })
 
@@ -89,7 +113,10 @@ export default function PostBody({
   )
 
   return (
-    <div className={`space ${styles.wrapper}`}>
+    <div 
+      className={`space ${styles.wrapper}`} 
+      ref={wrapperRef}
+    >
       <main className={`
         ${styles.body} 
         ${noIndex ? styles.noIndex : styles.availableIndex}
@@ -98,7 +125,13 @@ export default function PostBody({
         <PostFooter />
       </main>
       {!noIndex && headings.length > 0 && (
-        <aside className={styles.index}>
+        <aside
+          className={`
+            ${styles.index}
+            ${isFixed ? styles.fixed : ""}
+          `}
+          ref={indexRef}
+        >
           <h2>Table of contents</h2>
           {renderHeadings(headings)}
         </aside>
