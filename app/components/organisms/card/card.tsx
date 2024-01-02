@@ -10,7 +10,7 @@ export default function Card({
   href, 
   children 
 } : {
-  useAlt: boolean;
+  useAlt?: boolean;
   element?: any;
   heading: string;
   dateTime: string;
@@ -27,7 +27,7 @@ export default function Card({
           <time>{dateTime}</time>
           <Heading>{heading}</Heading>
           <p>{excerpt}</p>
-          {children}
+          {children && (children)}
           <Hyperlink href={href}>Read more</Hyperlink>
         </>
       ) : (
@@ -36,7 +36,7 @@ export default function Card({
             <time>{dateTime}</time>
             <Heading>{heading}</Heading>
             <p>{excerpt}</p>
-            {children}
+            {children && (children)}
           </div>
           <Hyperlink href={href}>Read more</Hyperlink>
         </>

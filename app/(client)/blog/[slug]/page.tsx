@@ -17,7 +17,7 @@ interface Params {
 
 export const revalidate = 60
 
-async function getPost(slug: string) {
+async function fetchPost(slug: string) {
   const query = `
     *[_type=="post" && slug.current == "${slug}"] [0] {
       _id,
@@ -40,7 +40,7 @@ async function getPost(slug: string) {
 }
 
 export async function generateMetadata( { params }: Params ): Promise<Metadata> {
-  const post = await getPost(params?.slug)
+  const post = await fetchPost(params?.slug)
 
   return {
     title: `${post?.title} | Truly Sergio`,
@@ -49,7 +49,7 @@ export async function generateMetadata( { params }: Params ): Promise<Metadata> 
 }
 
 export default async function PostPage( { params }: Params ) {
-  const post = await getPost(params?.slug)
+  const post = await fetchPost(params?.slug)
 
   return (
     <>

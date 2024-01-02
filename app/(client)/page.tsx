@@ -11,7 +11,7 @@ export const metadata = {
   title: "Truly Sergio",
 }
 
-async function getPosts() {
+async function fetchPosts() {
   const query = `
     *[_type == "post"] {
       _id,
@@ -49,9 +49,8 @@ async function getAllTags() {
 export const revalidate = 60
 
 export default async function HomePage() {
-  const posts: Post[] = await getPosts()
+  const posts: Post[] = await fetchPosts()
   const tags: Tag[] = await getAllTags()
-  console.log(tags, "tags")
 
   return (
     <>

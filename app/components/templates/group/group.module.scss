@@ -1,0 +1,27 @@
+.wrapper {
+  margin-bottom: 3.5625rem;
+
+  &:first-of-type {
+    margin-top: 3.5625rem;
+  }
+
+  & > .split {
+    @media (min-width: 768px) {
+      margin-left: 3.5625rem;
+      margin-right: 3.5625rem;
+    }
+
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    & > h1, h2, h3, h4, h5, h6 {
+      margin-bottom: 0;
+    }
+  
+    & > span {
+      max-height: 2.5rem;
+    }
+  }
+}

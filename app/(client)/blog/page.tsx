@@ -1,19 +1,24 @@
 import { client } from "../../../sanity/lib/client"
-import { Post } from "../../utils/interface"
-import Intro from "../../components/templates/intro/intro"
-import TwoCol from "../../components/templates/twoCol/twoCol"
+import { Post, Tag } from "../../utils/interface"
 import Card from "../../components/organisms/card/card"
-import TagContainer from "../../components/templates/tagContainer/tagContainer"
-import Label from "../../components/atoms/label/label"
+import Group from "../../components/templates/group/group"
 
-export const metadata = {
-  title: "Blog",
-  description: ""
+async function fetchTags() {
+  const query = `
+    *[_type=="tag"] {
+      _id,
+      slug,
+      tagName
+    }
+  `
+
+  const tags = await client.fetch(query)
+  return tags
 }
 
-async function getPosts() {
+async function fetchPosts() {
   const query = `
-    *[_type == "post"] {
+    *[_type=="post"] {
       _id,
       title,
       slug,
@@ -27,54 +32,44 @@ async function getPosts() {
     }
   `
 
-  const data = await client.fetch(query)
-
-  return data
+  const posts = await client.fetch(query)
+  return posts
 }
 
 export const revalidate = 60
 
-export default async function BlogPage() {
-  const posts: Post[] = await getPosts()
+export default async function TagPage() {
+  const tags: Tag[] = await fetchTags()
+  const posts: Post[] = await fetchPosts()
 
   return (
     <>
-      <Intro>
-        Blog
-      </Intro>
-      <TwoCol useMin>
-        {posts?.length > 0 && posts?.map(post => (
-          <Card
-            useAlt={false}
-            key={post._id}  
-            element={""}
-            heading={post.title}
-            dateTime={
-              (new Date(post.datePublished).toLocaleString(
-                "en-GB", 
-                {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric',
-                }
-              ))
-            }
-            excerpt={post.excerpt}
-            href={`blog/${post.slug.current}`}
-          >
-            <TagContainer>
-              {post?.tags?.map(tag => (
-                <Label 
-                  alt
-                  key={tag?._id}
-                >
-                  {tag?.tagName}
-                </Label>
+      {tags?.length > 0 && tags?.map(tag => {
+        const count = posts.filter(post => post.tags.length === 1 && post.tags[0]._id === tag._id).length
+
+        if (count > 0) {
+          return (
+            <Group
+              key={tag._id}
+              heading={tag.tagName}
+              counter={count === 1 ? `${count} article` : `${count} articles`}
+            >
+              {posts.filter(post => post.tags.length === 1 && post.tags[0]._id === tag._id).map(post => (
+                <Card
+                  key={post._id}
+                  heading={post?.title}
+                  dateTime={(new Date(post?.datePublished).toLocaleString(
+                    "en-GB",
+                    { month: "long", day: "numeric", year: "numeric" }
+                  ))}
+                  excerpt={post?.excerpt}
+                  href={`blog/${post?.slug.current}`}
+                />
               ))}
-            </TagContainer>
-          </Card>
-        ))}
-      </TwoCol>
+            </Group>
+          )
+        }
+      })}
     </>
   )
 }

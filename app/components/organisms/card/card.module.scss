@@ -24,12 +24,11 @@
   
     p {
       line-height: var(--line-height);
-      margin-bottom: 1.5rem;
-    }
-  }
 
-  & > a {
-    width: fit-content;
+      &:not(:last-child) {
+        margin-bottom: 1.5rem;
+      }
+    }
   }
 }
 
