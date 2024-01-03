@@ -1,6 +1,6 @@
-import styles from "./twoCol.module.scss"
+import styles from "./grid.module.scss"
 
-export default function TwoCol({ 
+export default function Grid({ 
   useMin,
   children,
 } : {

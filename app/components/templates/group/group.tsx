@@ -1,26 +1,24 @@
-import React from 'react'
 import styles from "./group.module.scss"
+import Intro from "../../organisms/intro/intro"
+import Grid from "../../organisms/grid/grid"
 
 export default function Group({
-  element,
   heading,
   counter,
   children
 } : {
-  element?: any
   heading: string
   counter?: any
   children: React.ReactNode
 }) {
-  const Heading = element || "h1"
-
+  
   return (
-    <section className={`space ${styles.wrapper}`}>
-      <div className={styles.split}>
-        <Heading>{heading}</Heading>
+    <section className="space">
+      <div className={styles.intro}>
+        <Intro>{heading}</Intro>
         <span>{counter}</span>
       </div>
-      {children}
+      <Grid useMin>{children}</Grid>
     </section>
   )
 }

@@ -1,27 +1,26 @@
-.wrapper {
-  margin-bottom: 3.5625rem;
+.intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 
-  &:first-of-type {
-    margin-top: 3.5625rem;
+  @media (min-width: 768px) {
+    margin: auto 3.5625rem;
   }
 
-  & > .split {
-    @media (min-width: 768px) {
-      margin-left: 3.5625rem;
-      margin-right: 3.5625rem;
+  & > span {
+    color: rgb(var(--N400));
+    max-height: 2.5rem;
+
+    @media (min-width: 320px) and (max-width: 479px) {
+      margin-bottom: 19px;
     }
 
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-
-    & > h1, h2, h3, h4, h5, h6 {
-      margin-bottom: 0;
+    @media (min-width: 480px) and (max-width: 575px) {
+      margin-bottom: 23px;
     }
-  
-    & > span {
-      max-height: 2.5rem;
+
+    @media (min-width: 576px) {
+      margin-bottom: 29px;
     }
   }
 }

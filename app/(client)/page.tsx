@@ -1,7 +1,8 @@
 import { client } from "../../sanity/lib/client"
-import { Post, Tag } from "../utils/interface"
-import Intro from "../components/templates/intro/intro"
-import TwoCol from "../components/templates/twoCol/twoCol"
+import { Post } from "../utils/interface"
+import { Tag } from "../utils/interface"
+import Intro from "../components/organisms/intro/intro"
+import Grid from "../components/organisms/grid/grid"
 import Card from "../components/organisms/card/card"
 import TagContainer from "../components/templates/tagContainer/tagContainer"
 import Label from "../components/atoms/label/label"
@@ -28,21 +29,19 @@ async function fetchPosts() {
   `
 
   const posts = await client.fetch(query)
-
   return posts
 }
 
-async function getAllTags() {
+async function fetchTags() {
   const query = `
     *[_type=="tag"] {
-      tagName,
+      _id,
       slug,
-      _id
+      tagName
     }
   `
 
   const tags = await client.fetch(query)
-
   return tags
 }
 
@@ -50,14 +49,14 @@ export const revalidate = 60
 
 export default async function HomePage() {
   const posts: Post[] = await fetchPosts()
-  const tags: Tag[] = await getAllTags()
+  const tags: Tag[] = await fetchTags()
 
   return (
     <>
       <Intro>
         Sergio Garcia Gallego
       </Intro>
-      <TwoCol>
+      <Grid>
         <section>
           <h2>Recently published</h2>
           {posts?.length > 0 && posts?.map(post => (
@@ -77,7 +76,7 @@ export default async function HomePage() {
                 ))
               }
               excerpt={post.excerpt}
-              href={`blog/${post.slug.current}`}
+              href={`/blog/${tags.find(tag => tag._id === post.tags[0]._id).slug.current}/${post?.slug.current}`}
             />
           ))}
         </section>
@@ -101,7 +100,7 @@ export default async function HomePage() {
             </TagContainer>
           </section>
         </aside>
-      </TwoCol>
+      </Grid>
     </>
   )
 }

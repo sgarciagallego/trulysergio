@@ -1,25 +1,23 @@
-import type { Metadata, ResolvingMetadata } from "next"
+import type { Metadata } from "next"
 import Image from "next/image"
-import { client } from "../../../../sanity/lib/client"
-import { urlForImage } from "../../../../sanity/lib/image"
-import { Tag } from "../../../utils/interface"
+import { client } from "../../../../../sanity/lib/client"
+import { urlForImage } from "../../../../../sanity/lib/image"
+import { Tag } from "../../../../utils/interface"
 import { PortableText } from "@portabletext/react"
-import Intro from "../../../components/templates/intro/intro"
-import PostBody from "../../../components/organisms/postBody/postBody"
-import TagContainer from "../../../components/templates/tagContainer/tagContainer"
-import Label from "../../../components/atoms/label/label"
+import Intro from "../../../../components/organisms/intro/intro"
+import PostBody from "../../../../components/organisms/postBody/postBody"
+import TagContainer from "../../../../components/templates/tagContainer/tagContainer"
+import Label from "../../../../components/atoms/label/label"
 
 interface Params {
   params: {
-    slug: string
+    post: string
   }
 }
 
-export const revalidate = 60
-
-async function fetchPost(slug: string) {
+async function fetchPost(post: string) {
   const query = `
-    *[_type=="post" && slug.current == "${slug}"] [0] {
+    *[_type=="post" && slug.current == "${post}"] [0] {
       _id,
       title,
       slug,
@@ -34,22 +32,23 @@ async function fetchPost(slug: string) {
     }
   `
 
-  const post = await client.fetch(query)
-
-  return post
+  const posts = await client.fetch(query)
+  return posts
 }
 
+export const revalidate = 60
+
 export async function generateMetadata( { params }: Params ): Promise<Metadata> {
-  const post = await fetchPost(params?.slug)
+  const post = await fetchPost(params?.post)
 
   return {
-    title: `${post?.title} | Truly Sergio`,
+    title: post?.title,
     description: post?.excerpt,
   }
 }
 
 export default async function PostPage( { params }: Params ) {
-  const post = await fetchPost(params?.slug)
+  const post = await fetchPost(params?.post)
 
   return (
     <>

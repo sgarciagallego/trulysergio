@@ -38,6 +38,10 @@ async function fetchPosts() {
 
 export const revalidate = 60
 
+export const metadata = {
+  title: "Blog",
+}
+
 export default async function TagPage() {
   const tags: Tag[] = await fetchTags()
   const posts: Post[] = await fetchPosts()
@@ -63,7 +67,7 @@ export default async function TagPage() {
                     { month: "long", day: "numeric", year: "numeric" }
                   ))}
                   excerpt={post?.excerpt}
-                  href={`blog/${post?.slug.current}`}
+                  href={`/blog/${tag?.slug.current}/${post?.slug.current}`}
                 />
               ))}
             </Group>
