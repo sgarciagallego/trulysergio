@@ -1,5 +1,5 @@
 import styles from "./intro.module.scss"
-import Subtitle from "../../atoms/subtitle/subtitle"
+import Subtitle from "../subtitle/subtitle"
 
 export default function Intro({
   element,

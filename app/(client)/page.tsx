@@ -1,12 +1,10 @@
 import { client } from "../../sanity/lib/client"
-import { Post } from "../utils/interface"
-import { Tag } from "../utils/interface"
-import Intro from "../components/organisms/intro/intro"
+import { Post, Tag } from "../utils/interface"
+import Label from "../components/atoms/tag/tag"
+import TagMap from "../components/molecules/tagMap/tagMap"
+import Intro from "../components/atoms/intro/intro"
 import Grid from "../components/organisms/grid/grid"
 import Card from "../components/organisms/card/card"
-import TagContainer from "../components/templates/tagContainer/tagContainer"
-import Label from "../components/atoms/label/label"
-import Link from "next/link"
 
 export const metadata = {
   title: "Truly Sergio",
@@ -77,27 +75,37 @@ export default async function HomePage() {
               }
               excerpt={post.excerpt}
               href={`/blog/${tags.find(tag => tag._id === post.tags[0]._id).slug.current}/${post?.slug.current}`}
-            />
+            >
+              <TagMap>
+                {post?.tags.length > 0 && post?.tags.map(tag => (
+                  <Label 
+                    key={tag?._id}
+                    href={`/blog/${tag?.slug.current}`}
+                  >
+                    {tag?.tagName}
+                  </Label>
+                ))}
+              </TagMap>
+            </Card>
           ))}
         </section>
         <aside>
           <section>
             <h2>About me</h2>
-            <p>Hi! I&apos;m Sergio, a Designer Developer for an education provider and co-founder for a branding agency. My aim for this blog is to help people revolving around the technical and creative industries build confidence and overcome challenges in their professional development.</p>
+            <p>Hi! I&apos;m Sergio, a UX/UI Engineer for an education provider and co-founder of a branding agency. My only aim with this blog is to speak on experiences I&apos;ve learned from, personal and professional, and maybe you&apos;ll leave here more confident as a result.</p>
           </section>
           <section>
             <h2>Categories</h2>
-            <TagContainer>
+            <TagMap>
               {tags?.length > 0 && tags?.map(tag => (
-                <Link 
-                  key={tag?._id}
-                  href={`/blog/${tag.slug.current}`}
-                  style={{textDecoration: "none"}}
+                <Label 
+                  key={tag?._id} 
+                  href={`/blog/${tag?.slug.current}`}
                 >
-                  <Label>{tag.tagName}</Label>
-                </Link>
+                  {tag?.tagName}
+                </Label>
               ))}
-            </TagContainer>
+            </TagMap>
           </section>
         </aside>
       </Grid>

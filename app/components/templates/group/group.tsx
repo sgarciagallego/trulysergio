@@ -1,5 +1,5 @@
 import styles from "./group.module.scss"
-import Intro from "../../organisms/intro/intro"
+import Intro from "../../atoms/intro/intro"
 import Grid from "../../organisms/grid/grid"
 
 export default function Group({

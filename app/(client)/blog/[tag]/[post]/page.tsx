@@ -4,10 +4,10 @@ import { client } from "../../../../../sanity/lib/client"
 import { urlForImage } from "../../../../../sanity/lib/image"
 import { Tag } from "../../../../utils/interface"
 import { PortableText } from "@portabletext/react"
-import Intro from "../../../../components/organisms/intro/intro"
-import PostBody from "../../../../components/organisms/postBody/postBody"
-import TagContainer from "../../../../components/templates/tagContainer/tagContainer"
-import Label from "../../../../components/atoms/label/label"
+import Intro from "../../../../components/atoms/intro/intro"
+import PostBody from "../../../../components/templates/postBody/postBody"
+import TagMap from "../../../../components/molecules/tagMap/tagMap"
+import Label from "../../../../components/atoms/tag/tag"
 
 interface Params {
   params: {
@@ -71,11 +71,14 @@ export default async function PostPage( { params }: Params ) {
         value={post?.body} 
         components={myPortableTextComponents}
       />
-        <TagContainer>
+        <TagMap>
           {post?.tags?.map((label: Tag) => (
-            <Label key={label._id}>{label.tagName}</Label>
+            <Label 
+              key={label._id}
+              href={`/blog/${label.slug.current}`}
+            >{label.tagName}</Label>
           ))}
-        </TagContainer>
+        </TagMap>
       </PostBody>
     </>
   )

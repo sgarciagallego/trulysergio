@@ -4,8 +4,15 @@
   background: rgb(var(--N100));
   color: rgb(var(--foreground));
   line-height: var(--line-height-double);
+  text-decoration: none;
   font-weight: var(--font-weight-medium);
   font-size: var(--font-size-small);
+  transition: var(--transition-2x);
+
+  &:hover {
+    transform: scale(1.07);
+    background: rgb(var(--N200));
+  }
 }
 
 .altTag {

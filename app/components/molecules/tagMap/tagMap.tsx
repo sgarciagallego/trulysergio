@@ -1,6 +1,6 @@
-import styles from "./tagContainer.module.scss"
+import styles from "./tagMap.module.scss"
 
-export default function TagContainer({ 
+export default function TagMap({
   children
 } : {
   children: React.ReactNode

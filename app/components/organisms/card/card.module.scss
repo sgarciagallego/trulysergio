@@ -6,6 +6,7 @@
   justify-content: space-between;
   background: rgb(var(--N100));
   font-size: 1rem;
+  transition: background var(--transition-2x);
 
   & > .container {
     margin-bottom: 1.5rem;
