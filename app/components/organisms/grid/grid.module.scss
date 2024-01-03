@@ -16,8 +16,12 @@
   gap: 1rem;
 
   @media (min-width: 320px) and (max-width: 991px) {
-    & > aside > section {
-      margin-bottom: 6rem;
+    & > aside {
+      margin-top: 6rem;
+
+      & > section:not(:last-of-type) {
+        margin-bottom: 6rem;
+      }
     }
   }
 
@@ -34,10 +38,6 @@
       flex-direction: column;
       gap: 6rem;
     }
-  }
-
-  & > section {
-    margin-bottom: 6rem;
   }
 
   & > section > article:not(:last-of-type) {
