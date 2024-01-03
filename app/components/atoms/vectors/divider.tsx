@@ -1,4 +1,4 @@
-export default function DividerVector(props) {
+export default function DividerVector( props: { props: string } ) {
   return (
     <svg
       preserveAspectRatio="none"

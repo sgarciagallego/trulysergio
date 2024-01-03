@@ -1,4 +1,4 @@
-export default function ArrowRightVector(props) {
+export default function ArrowRightVector( props: { props: string } ) {
   return (
     <svg
       x="0px" 

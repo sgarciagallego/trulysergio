@@ -1,4 +1,4 @@
-export default function CheckVector(props) {
+export default function CheckVector( props: { props: string } ) {
   return (
     <svg
       x="0px" 
