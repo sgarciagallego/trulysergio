@@ -1,20 +1,8 @@
+import { notFound } from "next/navigation"
 import { client } from "../../../sanity/lib/client"
 import { Post, Tag } from "../../utils/interface"
 import Card from "../../components/organisms/card/card"
 import Group from "../../components/templates/group/group"
-
-async function fetchTags() {
-  const query = `
-    *[_type=="tag"] {
-      _id,
-      slug,
-      tagName
-    }
-  `
-
-  const tags = await client.fetch(query)
-  return tags
-}
 
 async function fetchPosts() {
   const query = `
@@ -36,15 +24,33 @@ async function fetchPosts() {
   return posts
 }
 
-export const revalidate = 60
+async function fetchTags() {
+  const query = `
+    *[_type=="tag"] {
+      _id,
+      slug,
+      tagName
+    }
+  `
+
+  const tags = await client.fetch(query)
+  return tags
+}
 
 export const metadata = {
   title: "Blog",
+  description: ""
 }
 
-export default async function TagPage() {
+export const revalidate = 60
+
+export default async function BlogPage() {
   const tags: Tag[] = await fetchTags()
   const posts: Post[] = await fetchPosts()
+
+  if (!posts) {
+    notFound()
+  }
 
   return (
     <>

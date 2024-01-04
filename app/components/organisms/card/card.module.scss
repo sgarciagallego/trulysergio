@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper > a {
   border-radius: var(--border-radius);
   padding: var(--padding-card);
   display: flex;
@@ -7,6 +7,21 @@
   background: rgb(var(--N100));
   font-size: 1rem;
   transition: background var(--transition-2x);
+  text-decoration: none;
+  color: rgb(var(--foreground));
+
+  &:hover {
+    & > .container > h2,
+    & > .container > h3,
+    & > .container > h4 {
+      color: rgb(var(--primary));
+    }
+
+    & > .cta > svg {
+      fill: rgb(var(--primary));
+      transform: var(--transform-right);
+    }
+  }
 
   & > .container {
     margin-bottom: 1.5rem;
@@ -21,6 +36,7 @@
     & > h2, h3, h4 {
       font-size: var(--font-size-h4);
       margin-bottom: 1.5rem;
+      transition: color var(--transition-2x);
     }
   
     p {
@@ -29,6 +45,22 @@
       &:not(:last-child) {
         margin-bottom: 1.5rem;
       }
+    }
+  }
+
+  & > .cta {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-icon);
+    color: rgb(var(--foreground));
+    text-decoration: none;
+    font-weight: var(--font-weight-bold);
+
+    & > svg {
+      min-width: 1.5em;
+      max-width: 1.5em;
+      fill: rgb(var(--foreground));
+      transition: var(--transition-2x);
     }
   }
 }
@@ -43,9 +75,23 @@
     font-size: var(--font-size-small);
   }
 
-  & > h2, h3, h4 {
-    font-size: var(--font-size-h4);
-    margin-bottom: 1.5rem;
+  & > a {
+    display: flex;
+    width: fit-content;
+    text-decoration: none;
+    color: rgb(var(--foreground));
+
+    &:hover {
+      & > h2, h3, h4 {
+        color: rgb(var(--primary));
+      }
+    }
+
+    & > h2, h3, h4 {
+      margin-bottom: 1.5rem;
+      font-size: var(--font-size-h4);
+      transition: color var(--transition-2x);
+    }
   }
 
   p {
@@ -55,9 +101,5 @@
 
   & > div {
     margin-bottom: 1.5rem;
-  }
-
-  & > a {
-    width: fit-content;
   }
 }

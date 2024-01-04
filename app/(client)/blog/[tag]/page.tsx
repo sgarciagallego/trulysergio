@@ -3,24 +3,12 @@ import { client } from "../../../../sanity/lib/client"
 import { Post } from "../../../utils/interface"
 import Card from "../../../components/organisms/card/card"
 import Group from "../../../components/templates/group/group"
+import { notFound } from "next/navigation"
 
 interface Params {
   params: {
     tag: string
   }
-}
-
-async function fetchTag(tag: string) {
-  const query = `
-    *[_type=="tag" && slug.current == "${tag}"] [0] {
-      _id,
-      slug,
-      tagName,
-    }
-  `
-
-  const tags = await client.fetch(query)
-  return tags
 }
 
 async function fetchPosts() {
@@ -43,10 +31,21 @@ async function fetchPosts() {
   return posts
 }
 
-export const revalidate = 60
+async function fetchTags(tag: string) {
+  const query = `
+    *[_type=="tag" && slug.current == "${tag}"] [0] {
+      _id,
+      slug,
+      tagName,
+    }
+  `
+
+  const tags = await client.fetch(query)
+  return tags
+}
 
 export async function generateMetadata( { params }: Params ): Promise<Metadata> {
-  const tag = await fetchTag(params?.tag)
+  const tag = await fetchTags(params?.tag)
 
   return {
     title: `${tag?.tagName} articles`,
@@ -54,16 +53,22 @@ export async function generateMetadata( { params }: Params ): Promise<Metadata> 
   }
 }
 
-export default async function TagPage( {params} : Params ) {
-  const tag = await fetchTag(params?.tag)
-  const posts: Post[] = await fetchPosts()
+export const revalidate = 60
 
-  const count = posts.filter(post => post.tags.some(tag => tag.slug.current === params?.tag)).length
+export default async function TagPage( {params} : Params ) {
+  const posts: Post[] = await fetchPosts()
+  const tags = await fetchTags(params?.tag)
+
+  const count = posts.filter(post => post?.tags.find(tag => tag?.slug.current === params?.tag)).length
+
+  if (!tags) {
+    notFound()
+  }
 
   return (
     <>
       <Group 
-        heading={tag?.tagName}
+        heading={tags?.tagName}
         counter={count === 1 ? `${count} article` : `${count} articles`}
       >
         {posts?.filter(post => post?.tags?.find(tag => tag.slug.current === params?.tag)).map(post => (
@@ -75,7 +80,7 @@ export default async function TagPage( {params} : Params ) {
               { month: "long", day: "numeric", year: "numeric" }
             ))}
             excerpt={post?.excerpt}
-            href={`/blog/${tag?.slug.current}/${post?.slug.current}`}
+            href={`/blog/${tags?.slug.current}/${post?.slug.current}`}
           />
         ))}
       </Group>

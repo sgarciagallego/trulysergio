@@ -8,6 +8,7 @@ import Intro from "../../../../components/atoms/intro/intro"
 import PostBody from "../../../../components/templates/postBody/postBody"
 import TagMap from "../../../../components/molecules/tagMap/tagMap"
 import Label from "../../../../components/atoms/tag/tag"
+import { notFound } from "next/navigation"
 
 interface Params {
   params: {
@@ -15,7 +16,7 @@ interface Params {
   }
 }
 
-async function fetchPost(post: string) {
+async function fetchPosts(post: string) {
   const query = `
     *[_type=="post" && slug.current == "${post}"] [0] {
       _id,
@@ -36,10 +37,8 @@ async function fetchPost(post: string) {
   return posts
 }
 
-export const revalidate = 60
-
 export async function generateMetadata( { params }: Params ): Promise<Metadata> {
-  const post = await fetchPost(params?.post)
+  const post = await fetchPosts(params?.post)
 
   return {
     title: post?.title,
@@ -47,8 +46,14 @@ export async function generateMetadata( { params }: Params ): Promise<Metadata> 
   }
 }
 
+export const revalidate = 60
+
 export default async function PostPage( { params }: Params ) {
-  const post = await fetchPost(params?.post)
+  const post = await fetchPosts(params?.post)
+
+  if (!post) {
+    notFound()
+  }
 
   return (
     <>
