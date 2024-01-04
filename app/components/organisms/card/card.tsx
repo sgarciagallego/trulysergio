@@ -1,10 +1,9 @@
 import Link from "next/link"
 import styles from "./card.module.scss"
-import Hyperlink from "../../atoms/hyperlink/hyperlink"
 import Vector from "../../atoms/vector";
 
 export default function Card({ 
-  useAlt, 
+  alt, 
   element, 
   heading, 
   dateTime, 
@@ -12,7 +11,7 @@ export default function Card({
   href, 
   children 
 } : {
-  useAlt?: boolean;
+  alt?: boolean;
   element?: any;
   heading: string;
   dateTime: string;
@@ -23,29 +22,35 @@ export default function Card({
   const Heading = element || "h2"
 
   return (
-    <article className={`space ${useAlt ? styles.altWrapper : styles.wrapper}`}>
-      {useAlt ? (
-        <>
-          <time>{dateTime}</time>
-          <Link href={href} passHref><Heading>{heading}</Heading></Link>
-          <p>{excerpt}</p>
-          {children && (children)}
-          <Hyperlink href={href}>Read more</Hyperlink>
-        </>
-      ) : (
-        <Link href={href} passHref>
+    <Link 
+      href={href} passHref
+      className={alt ? styles.wrapper : styles.spacer}
+    >
+      {alt ? (
+        <article className={styles.card}>
           <div className={styles.container}>
             <time>{dateTime}</time>
             <Heading>{heading}</Heading>
             <p>{excerpt}</p>
-            {children && (children)}
+            {children && children}
           </div>
           <div className={styles.cta}>
             Read more
             <Vector name="arrowRight" />
           </div>
-        </Link>
+        </article>
+      ) : (
+        <article className={styles.article}>
+          <time>{dateTime}</time>
+          <Heading>{heading}</Heading>
+          <p>{excerpt}</p>
+          {children && children}
+          <div className={styles.cta}>
+            Read more
+            <Vector name="arrowRight" />
+          </div>
+        </article>
       )}
-    </article>
+    </Link>
   )
 }

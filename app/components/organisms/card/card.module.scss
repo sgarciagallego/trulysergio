@@ -1,54 +1,34 @@
-.wrapper > a {
-  border-radius: var(--border-radius);
-  padding: var(--padding-card);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: rgb(var(--N100));
-  font-size: 1rem;
-  transition: background var(--transition-2x);
+.wrapper,
+.spacer {
+  color: inherit;
   text-decoration: none;
-  color: rgb(var(--foreground));
+  font-size: 1rem;
 
   &:hover {
-    & > .container > h2,
-    & > .container > h3,
-    & > .container > h4 {
+    & h2, & h3, & h4 {
       color: rgb(var(--primary));
     }
 
-    & > .cta > svg {
-      fill: rgb(var(--primary));
+    & .cta > svg {
       transform: var(--transform-right);
+      fill: rgb(var(--primary));
     }
   }
 
-  & > .container {
+  & time {
+    margin-bottom: 0.75rem;
+    display: block;
+    color: rgb(var(--N500));
+    font-size: var(--font-size-small);
+  }
+
+  & h2, & h3, & h4 {
     margin-bottom: 1.5rem;
-
-    & > time {
-      margin-bottom: 0.75rem;
-      display: block;
-      color: rgb(var(--N500));
-      font-size: var(--font-size-small);
-    }
-  
-    & > h2, h3, h4 {
-      font-size: var(--font-size-h4);
-      margin-bottom: 1.5rem;
-      transition: color var(--transition-2x);
-    }
-  
-    p {
-      line-height: var(--line-height);
-
-      &:not(:last-child) {
-        margin-bottom: 1.5rem;
-      }
-    }
+    font-size: var(--font-size-h4);
+    transition: color var(--transition-2x);
   }
 
-  & > .cta {
+  & .cta {
     display: flex;
     align-items: center;
     gap: var(--gap-icon);
@@ -63,43 +43,32 @@
       transition: var(--transition-2x);
     }
   }
+
+  & > .card {
+    border-radius: var(--border-radius);
+    padding: var(--padding-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgb(var(--N100));
+    transition: var(--transition-2x);
+
+    & > .container {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  & > .article {
+    p {
+      margin-bottom: 1.5rem;
+    }
+  }
 }
 
-.altWrapper {
-  font-size: 1rem;
+.spacer {
+  display: block;
 
-  & > time {
-    margin-bottom: 0.75rem;
-    display: block;
-    color: rgb(var(--N500));
-    font-size: var(--font-size-small);
-  }
-
-  & > a {
-    display: flex;
-    width: fit-content;
-    text-decoration: none;
-    color: rgb(var(--foreground));
-
-    &:hover {
-      & > h2, h3, h4 {
-        color: rgb(var(--primary));
-      }
-    }
-
-    & > h2, h3, h4 {
-      margin-bottom: 1.5rem;
-      font-size: var(--font-size-h4);
-      transition: color var(--transition-2x);
-    }
-  }
-
-  p {
-    line-height: var(--line-height);
-    margin-bottom: 1.5rem;
-  }
-
-  & > div {
-    margin-bottom: 1.5rem;
+  &:not(:last-of-type) {
+    margin-bottom: 3.5625rem;
   }
 }

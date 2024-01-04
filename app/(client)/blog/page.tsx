@@ -67,6 +67,7 @@ export default async function BlogPage() {
               {posts.filter(post => post.tags.length === 1 && post.tags[0]._id === tag._id).map(post => (
                 <Card
                   key={post._id}
+                  alt
                   heading={post?.title}
                   dateTime={(new Date(post?.datePublished).toLocaleString(
                     "en-GB",

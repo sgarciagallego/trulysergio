@@ -60,7 +60,6 @@ export default async function HomePage() {
           {posts?.length > 0 && posts?.map(post => (
             <Card
               key={post._id}
-              useAlt={true}
               element={"h3"}
               heading={post.title}
               dateTime={
@@ -75,18 +74,7 @@ export default async function HomePage() {
               }
               excerpt={post.excerpt}
               href={`/blog/${tags.find(tag => tag._id === post.tags[0]._id).slug.current}/${post?.slug.current}`}
-            >
-              <TagMap>
-                {post?.tags.length > 0 && post?.tags.map(tag => (
-                  <Label 
-                    key={tag?._id}
-                    href={`/blog/${tag?.slug.current}`}
-                  >
-                    {tag?.tagName}
-                  </Label>
-                ))}
-              </TagMap>
-            </Card>
+            />
           ))}
         </section>
         <aside>

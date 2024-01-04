@@ -74,6 +74,7 @@ export default async function TagPage( {params} : Params ) {
         {posts?.filter(post => post?.tags?.find(tag => tag.slug.current === params?.tag)).map(post => (
           <Card
             key={post?._id}
+            alt
             heading={post?.title}
             dateTime={(new Date(post?.datePublished).toLocaleString(
               "en-GB",
