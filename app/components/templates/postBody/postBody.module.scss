@@ -4,6 +4,18 @@
   margin-bottom: 3.5625rem;
   display: grid;
   gap: 1rem;
+
+  @media (min-width: 320px) and (max-width: 991px) {
+    gap: 3.5625rem;
+
+    & > .body {
+      order: 2;
+    }
+
+    & > .container {
+      order: 1;
+    }
+  }
   
   @media (min-width: 992px) {
     grid-template-columns: repeat(12, 1fr);
