@@ -1,0 +1,35 @@
+.wrapperMin {
+  padding-top: 3.5625rem;
+}
+
+.wrapperMax {
+  margin-top: -7.125rem;
+  padding-top: 10.6825rem;
+  padding-bottom: 3.5625rem;
+  background: rgb(var(--N100));
+  transition: background var(--transition-2x);
+}
+
+.wrapperMin,
+.wrapperMax {
+  & h1 {
+    color: rgb(var(--foreground));
+  }
+
+  @media (min-width: 992px) {
+    & > .flex {
+      margin-top: 3.5625rem;
+      padding-bottom: 5.34375rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+  
+      & > .image {
+        position: absolute;
+        right: 0;
+        padding-right: var(--padding-card);
+      }
+    }
+  }
+}
