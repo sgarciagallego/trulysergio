@@ -79,10 +79,6 @@ export default async function HomePage() {
         </section>
         <aside>
           <section>
-            <h2>About me</h2>
-            <p>Hi! I&apos;m Sergio, a UX/UI Engineer for an education provider and co-founder of a branding agency. My only aim with this blog is to speak on experiences I&apos;ve learned from, personal and professional, and maybe you&apos;ll leave here more confident as a result.</p>
-          </section>
-          <section>
             <h2>Categories</h2>
             <TagMap>
               {tags?.length > 0 && tags?.map(tag => (
@@ -94,6 +90,10 @@ export default async function HomePage() {
                 </Label>
               ))}
             </TagMap>
+          </section>
+          <section>
+            <h2>About me</h2>
+            <p>Hi! I&apos;m Sergio, a UX/UI Engineer for an education provider and co-founder of a branding agency. My only aim with this blog is to speak on experiences I&apos;ve learned from, personal and professional, and maybe you&apos;ll leave here more confident as a result.</p>
           </section>
         </aside>
       </Grid>
