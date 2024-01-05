@@ -104,7 +104,7 @@
           display: block;
           color: rgb(var(--N400));
           text-decoration: none;
-          transition: var(--transition);
+          transition: var(--transition-3x);
 
           &:hover {
             color: rgb(var(--foreground));

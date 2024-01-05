@@ -7,13 +7,14 @@
   padding-top: 10.6825rem;
   padding-bottom: 3.5625rem;
   background: rgb(var(--N100));
-  transition: background var(--transition-2x);
+  transition: background var(--transition-3x);
 }
 
 .wrapperMin,
 .wrapperMax {
   & h1 {
     color: rgb(var(--foreground));
+    transition: var(--transition-3x);
   }
 
   @media (min-width: 992px) {

@@ -10,7 +10,7 @@
     min-width: 1.5em;
     max-width: 1.5em;
     fill: rgb(var(--foreground));
-    transition: var(--transition-2x);
+    transition: var(--transition);
   }
 
   &:hover > svg {

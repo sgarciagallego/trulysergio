@@ -9,7 +9,7 @@ export default function ReadingItem({
   children: React.ReactNode
 }) {
   return (
-    <Link href={href} className={styles.wrapper}>
+    <Link href={href}>
       {children}
     </Link>
   )

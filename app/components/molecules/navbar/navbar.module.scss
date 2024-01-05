@@ -60,7 +60,7 @@
       border-radius: 0.125rem;
       position: absolute;
       background: rgb(var(--foreground));
-      transition: var(--transition-2x);
+      transition: var(--transition-3x);
 
       &:nth-child(1) {
         top: 0;
@@ -165,7 +165,7 @@
             bottom: 0;
             left: 0;
             background-color: rgb(var(--foreground));
-            transition: transform var(--transition-2x);
+            transition: transform var(--transition-3x);
           }
 
           &:hover::after {

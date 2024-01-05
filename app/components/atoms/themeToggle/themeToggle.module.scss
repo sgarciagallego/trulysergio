@@ -62,22 +62,22 @@
   .themeToggle {
     & > .sunAndMoon {
       & > .sun {
-        transition: transform var(--transition-4x);
+        transition: transform var(--transition-3x);
       }
 
       & > .sunBeams {
         transition: 
-          transform var(--transition-4x), 
-          opacity var(--transition-4x);
+          transform var(--transition-3x), 
+          opacity var(--transition-3x);
       }
 
       & > .moon > circle {
-        transition: transform var(--transition-2x);
+        transition: transform var(--transition-3x);
       }
 
       @supports (cx: 1) {
         & > .moon > circle {
-          transition: cx var(--transition-2x);
+          transition: cx var(--transition-3x);
         }
       }
     }
@@ -86,18 +86,18 @@
   [data-theme="dark"] .themeToggle {
     & > .sunAndMoon {
       & > .sun {
-        transition: var(--transition-2x);
+        transition: var(--transition-3x);
         transform: scale(1.75);
       }
 
       & > .sunBeams {
-        transition-duration: 130ms;
+        transition-duration: 390ms;
         transform: rotateZ(-25deg);
       }
 
       & > .moon > circle {
-        transition-duration: 520ms;
-        transition-delay: 260ms;
+        transition-duration: 780ms;
+        transition-delay: 390ms;
       }
     }
   }
