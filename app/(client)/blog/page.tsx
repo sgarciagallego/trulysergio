@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { client } from "../../../sanity/lib/client"
 import { Post, Tag } from "../../utils/interface"
@@ -37,9 +38,9 @@ async function fetchTags() {
   return tags
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Blog",
-  description: ""
+  description: "A go-to blog for creative professionals, covering topics such as mindset, money, tech, coding and more!"
 }
 
 export const revalidate = 60

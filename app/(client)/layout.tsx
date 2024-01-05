@@ -94,6 +94,16 @@ const leagueMono = localFont({
   variable: "--font-mono",
 })
 
+export const metadata = {
+  metadataBase: new URL("https://trulysergio.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    images: '/og-image.png',
+  },
+}
+
 export default function RootLayout({ 
   children 
 } : {

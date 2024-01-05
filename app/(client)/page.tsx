@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import { client } from "../../sanity/lib/client"
 import { Post, Tag } from "../utils/interface"
 import Label from "../components/atoms/tag/tag"
@@ -5,10 +6,6 @@ import TagMap from "../components/molecules/tagMap/tagMap"
 import Intro from "../components/molecules/intro/intro"
 import Grid from "../components/organisms/grid/grid"
 import Card from "../components/organisms/card/card"
-
-export const metadata = {
-  title: "Truly Sergio",
-}
 
 async function fetchPosts() {
   const query = `
@@ -41,6 +38,11 @@ async function fetchTags() {
 
   const tags = await client.fetch(query)
   return tags
+}
+
+export const metadata: Metadata = {
+  title: "Truly Sergio",
+  description: "The life portfolio by Sergio Garcia Gallego, Co-founder and UX/UI Engineer, talking tech, money, mindset and more!"
 }
 
 export const revalidate = 60

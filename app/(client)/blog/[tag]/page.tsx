@@ -49,7 +49,7 @@ export async function generateMetadata( { params }: Params ): Promise<Metadata> 
 
   return {
     title: `${tag?.tagName} articles`,
-    description: "",
+    description: `Here I cover the topic of ${tag?.tagName}, with articles ranging across this topic!`,
   }
 }
 
