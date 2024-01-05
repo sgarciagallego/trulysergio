@@ -1,66 +1,66 @@
-import "../globals.scss"
+import "./(client)/globals.scss"
 import localFont from "next/font/local"
 import { Metadata } from "next"
 
 const wotfard = localFont({
   src: [
     {
-      path: "../fonts/wotfard-bold-webfont.ttf",
+      path: "./fonts/wotfard-bold-webfont.ttf",
       weight: "700",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-bold-webfont.woff2",
+      path: "./fonts/wotfard-bold-webfont.woff2",
       weight: "700",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-semibold-webfont.ttf",
+      path: "./fonts/wotfard-semibold-webfont.ttf",
       weight: "600",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-semibold-webfont.woff2",
+      path: "./fonts/wotfard-semibold-webfont.woff2",
       weight: "600",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-medium-webfont.ttf",
+      path: "./fonts/wotfard-medium-webfont.ttf",
       weight: "500",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-medium-webfont.woff2",
+      path: "./fonts/wotfard-medium-webfont.woff2",
       weight: "500",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-regular-webfont.ttf",
+      path: "./fonts/wotfard-regular-webfont.ttf",
       weight: "400",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-regular-webfont.woff2",
+      path: "./fonts/wotfard-regular-webfont.woff2",
       weight: "400",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-thin-webfont.ttf",
+      path: "./fonts/wotfard-thin-webfont.ttf",
       weight: "300",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-thin-webfont.woff2",
+      path: "./fonts/wotfard-thin-webfont.woff2",
       weight: "300",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-extralight-webfont.ttf",
+      path: "./fonts/wotfard-extralight-webfont.ttf",
       weight: "200",
       style: "normal"
     },
     {
-      path: "../fonts/wotfard-extralight-webfont.woff2",
+      path: "./fonts/wotfard-extralight-webfont.woff2",
       weight: "200",
       style: "normal"
     },
@@ -72,17 +72,17 @@ const wotfard = localFont({
 const leagueMono = localFont({
   src: [
     {
-      path: "../fonts/league-mono.ttf",
+      path: "./fonts/league-mono.ttf",
       weight: "400",
       style: "normal"
     },
     {
-      path: "../fonts/league-mono.woff",
+      path: "./fonts/league-mono.woff",
       weight: "400",
       style: "normal"
     },
     {
-      path: "../fonts/league-mono.woff2",
+      path: "./fonts/league-mono.woff2",
       weight: "400",
       style: "normal"
     },
@@ -93,7 +93,7 @@ const leagueMono = localFont({
 
 export const metadata: Metadata = {
   title: "404: Page not found",
-  description: "",
+  description: "Sorry, it seems we took a wrong turn...",
   metadataBase: new URL("https://trulysergio.com"),
   alternates: {
     canonical: "/",
