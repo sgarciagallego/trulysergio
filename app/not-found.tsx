@@ -39,7 +39,7 @@ export default function NotFound() {
       {isWideScreen && (
         <div>
           <Image 
-            src={"/avatar-wave.png"}
+            src={"/avatar-angry.png"}
             alt="Avatar of Sergio waving"
             width={350}
             height={350}
