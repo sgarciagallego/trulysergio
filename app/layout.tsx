@@ -94,13 +94,6 @@ const leagueMono = localFont({
 export const metadata: Metadata = {
   title: "404: Page not found",
   description: "Sorry, it seems we took a wrong turn...",
-  metadataBase: new URL("https://trulysergio.com"),
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    images: '/og-image.png',
-  },
 }
 
 export default function RootLayout({
