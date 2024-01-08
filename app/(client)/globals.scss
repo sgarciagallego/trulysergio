@@ -27,7 +27,6 @@ $level-size: $type-base-size;
   .h#{$level} {
     font-size: $level-size;
     line-height: calc(2px + 1em + 2px);
-    line-height: calc(2px + 2ex + 2px);
     margin-bottom: 0.65em;
 
     @if ($type-size-ratio > 1.2) {
