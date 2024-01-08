@@ -26,12 +26,13 @@ $level-size: $type-base-size;
   h#{$level},
   .h#{$level} {
     font-size: $level-size;
+    line-height: calc(2px + 1em + 2px);
     line-height: calc(2px + 2ex + 2px);
     margin-bottom: 0.65em;
 
     @if ($type-size-ratio > 1.2) {
       $level-unitless: $level-size / ($level-size * 0 + 1);
-      $fluid-reduction: if($level-size > 4, 0.5, 0.33);
+      $fluid-reduction: if($level-size > 6, 0.5, 0.33);
       $fluid-min: $level-unitless - ($fluid-reduction * $level-unitless);
       $fluid-min: if($fluid-min > $type-base-size, $fluid-min, 1);
       $fluid-scaler: ($level-unitless - $fluid-min) + 3.1vw;
