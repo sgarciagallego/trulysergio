@@ -71,7 +71,19 @@ export default async function PostPage( { params }: Params ) {
       >
         {post?.title}
       </Intro>
-      <PostBody>
+      <PostBody
+        lastUpdated={
+          (new Date(post?.datePublished).toLocaleString(
+            "en-GB", 
+            {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            }
+          ))
+        }
+        pageViews={2}
+      >
       <PortableText 
         value={post?.body} 
         components={myPortableTextComponents}

@@ -18,9 +18,13 @@ interface HierarchicalHeading extends Heading {
 export default function PostBody({
   noIndex,
   children,
+  lastUpdated,
+  pageViews
 }: {
   noIndex?: boolean
   children?: React.ReactNode
+  lastUpdated: string
+  pageViews: number
 }) {
   const [headings, setHeadings] = useState<HierarchicalHeading[]>([])
   const [isFixed, setIsFixed] = useState(false)
@@ -122,7 +126,10 @@ export default function PostBody({
         ${noIndex ? styles.noIndex : styles.availableIndex}
       `}>
         {children}
-        <PostFooter />
+        <PostFooter 
+          lastUpdated={lastUpdated}
+          pageViews={pageViews}
+        />
       </main>
       <div className={styles.container}>
         {!noIndex && headings.length > 0 && (
