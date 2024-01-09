@@ -58,16 +58,7 @@ export default async function PostPage( { params }: Params ) {
   return (
     <>
       <Intro
-        subtitle={
-          (new Date(post?.datePublished).toLocaleString(
-            "en-GB", 
-            {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            }
-          ))
-        }
+        subtitle={post?.tags[0].tagName}
       >
         {post?.title}
       </Intro>

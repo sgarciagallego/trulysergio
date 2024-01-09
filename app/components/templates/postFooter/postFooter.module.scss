@@ -21,7 +21,11 @@
     width: 100%;
     max-width: 104px;
     height: 0.75rem;
-    margin: 3.5625rem auto 3.5625rem auto;
+
+    @media (min-width: 320px) and (max-width: 479px) {
+      margin: 3.5625rem auto 3.5625rem auto;
+    }
+
     display: block;
 
     & > line {
@@ -44,6 +48,7 @@
 
     & > .token {
       font-size: 1.25em;
+      line-height: var(--line-height);
     }
   }
 
